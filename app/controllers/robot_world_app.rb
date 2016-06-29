@@ -1,5 +1,4 @@
 require 'yaml/store'
-require 'models/robot_world'
 class RobotWorldApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
   set :method_override, true
@@ -43,7 +42,11 @@ class RobotWorldApp < Sinatra::Base
   end
 
   def robot_world
-    robot_world = YAML::Store.new('robot_world/robots')
-    @rw ||= RobotWorld.new(robot_world)
+    if ENV['RACK_ENV'] == 'test'
+      world = YAML::Store.new("robot_world/robots_test")
+    else
+      world = YAML::Store.new("robot_world/robots")
+    end
+    @robot_world ||= RobotWorld.new(world)
   end
 end

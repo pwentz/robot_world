@@ -41,7 +41,7 @@ class RobotWorld
       targeted_robot[:birthdate] = robot_data[:birthdate]
       targeted_robot[:date_hired] = robot_data[:date_hired]
       targeted_robot[:department] = robot_data[:department]
-      targeted_robot[:avatar] = robot_data[:avatar]
+      targeted_robot[:avatar] = robot_data[:avatar] unless robot_data[:avatar].empty?
     end
   end
 
@@ -53,4 +53,10 @@ class RobotWorld
     end
   end
 
+  def delete_all
+    world.transaction do
+      world['robots'].clear
+      world['population'] = 0
+    end
+  end
 end
