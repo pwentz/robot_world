@@ -1,0 +1,30 @@
+<h3><%= @robot.name %></h3>
+
+<div class="row">
+  <div class="col-md-2">
+    <a class="thumbnail" href="#">
+      <img src="<%= @robot.avatar %>">
+    </a>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Birthdate</th>
+        <th>Date Hired</th>
+        <th>Department</th>
+      </tr>
+      <tr>
+        <td><%= @robot.name %></td>
+        <td><%= @robot.city %></td>
+        <td><%= @robot.state %></td>
+        <td><%= @robot.birthdate["month"] %>/<%= @robot.birthdate["day"] %>/<%= @robot.birthdate["year"]%></td>
+        <td><%= @robot.date_hired["month"] %>/<%= @robot.date_hired["day"] %>/<%= @robot.date_hired["year"] %></td>
+        <td><%= @robot.department %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<a class="btn btn-sm btn-info" href="/robots" role="button">Back to Robots!</a>

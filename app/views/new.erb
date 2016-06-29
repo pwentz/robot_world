@@ -1,0 +1,67 @@
+<form action="/robots" method="post">
+  <div class="form-group row"> 
+    <div class="col-md-6">
+      <span class="label label-default">Name</span>
+      <input type="text" class="form-control" name="robot[name]">
+    </div>
+    <div class="col-md-3">
+      <span class="label label-default">City</span>
+      <input type="text" class="form-control" name="robot[city]">
+    </div>
+    <div class="col-md-1">
+      <span class="label label-default">State</span>
+      <input type="text" class="form-control" name="robot[state]">
+    </div>
+    <div class="form-group">
+      <div class="col-md-10">
+      <span class="label label-default">Birthdate</span>
+        <div class="col-md-2">
+          <input type="text" class="form-control" name="robot[birthdate][month]">
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" name="robot[birthdate][day]">
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" name="robot[birthdate][year]">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-10">
+        <span class="label label-default">Date Hired</span>
+        <div class="col-md-2">
+          <input type="text" class="form-control" name="robot[date_hired][month]">
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" name="robot[date_hired][day]">
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" name="robot[date_hired][year]">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="robot[department]" value="option1">
+            Department 1
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="robot[department]" value="option2">
+            Department 2
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="robot[department]" value="option2">
+            Department 3
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input class="btn btn-primary" type="submit" value="Create!">
+</form>

@@ -1,0 +1,33 @@
+---
+robots:
+- !ruby/struct:RobotWorld::Robot
+  id: 5
+  name: Hector
+  city: Robotica
+  state: RO
+  birthdate:
+    month: '04'
+    day: '12'
+    year: '3040'
+  date_hired:
+    month: 09
+    day: '23'
+    year: '3079'
+  department: option2
+  avatar: https://robohash.org/5
+- !ruby/struct:RobotWorld::Robot
+  id: 6
+  name: Cornelius
+  city: Selectica
+  state: SE
+  birthdate:
+    month: '04'
+    day: '10'
+    year: '3090'
+  date_hired:
+    month: '02'
+    day: '23'
+    year: '4011'
+  department: option1
+  avatar: https://robohash.org/6
+population: 6
