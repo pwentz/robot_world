@@ -14,9 +14,6 @@ class RobotWorld
     end
   end
 
-  Robot = Struct.new(:id, :name, :city, :state,
-                     :birthdate,
-                     :date_hired, :department, :avatar)
 
   def new_robot(id, name, city, state, birthday, date_hired, department, avatar)
     Robot.new(id, name, city, state, birthday, date_hired, department, avatar)
@@ -32,16 +29,16 @@ class RobotWorld
     all.find{|robot| robot.id == robot_id}
   end
 
-  def update(robot_id, robot_data)
+  Robot = Struct.new(:id, :name, :city, :state,
+                     :birthdate,
+                     :date_hired, :department, :avatar)
+
+  def update(robot_id, new_robot_data)
     world.transaction do
-      targeted_robot = world['robots'].find{|robot| robot.id == robot_id}
-      targeted_robot[:name] = robot_data[:name]
-      targeted_robot[:city] = robot_data[:city]
-      targeted_robot[:state] = robot_data[:state]
-      targeted_robot[:birthdate] = robot_data[:birthdate]
-      targeted_robot[:date_hired] = robot_data[:date_hired]
-      targeted_robot[:department] = robot_data[:department]
-      targeted_robot[:avatar] = robot_data[:avatar] unless robot_data[:avatar].empty?
+      target = world['robots'].find{|robot| robot.id == robot_id}
+      target.to_h.merge(new_robot_data).each do |key, updated_value|
+        target[key] = updated_value
+      end
     end
   end
 

@@ -15,7 +15,7 @@ class UserSeesRobotTest < FeatureTest
     end
   end
 
-  def test_user_can_create_robot_and_view_name
+  def test_user_sees_robot_after_creation
     visit '/'
     click_link("Create new robot")
     
@@ -34,10 +34,12 @@ class UserSeesRobotTest < FeatureTest
       assert page.has_content?("Hector")
     end
 
-    click_link("Hector")
+    within(".thumbnail") do
+      assert page.has_css?("img")
+    end
   end
 
-  def test_user_can_create_robot_and_visit_page
+  def test_user_creates_robot_and_visits_robot_page
     visit '/'
     click_link("Create new robot")
     
@@ -58,6 +60,10 @@ class UserSeesRobotTest < FeatureTest
       assert page.has_content?("Hector")
       assert page.has_content?("Robotica")
       assert page.has_content?("05/22/3040")
+    end
+
+    within(".thumbnail") do
+      assert page.has_css?("img")
     end
   end
 end
