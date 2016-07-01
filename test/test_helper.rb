@@ -14,12 +14,9 @@ module TestHelpers
   end
 
   def robot_world
-    if ENV['RACK_ENV'] == 'test'
-      world = YAML::Store.new("robot_world/robots_test")
-    else
-      world = YAML::Store.new("robot_world/robots")
-    end
-    @robot_world ||= RobotWorld.new(world)
+    database = SQLite3::Database.new("db/robot_world_test.db")
+    database.results_as_hash = true
+    @robot_world ||= RobotWorld.new(database)
   end
 end
 

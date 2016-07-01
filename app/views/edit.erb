@@ -1,30 +1,30 @@
-<form action="/robots/<%= @robot[:id] %>" method="post">
+<form action="/robots/<%= robot_world.all.find{|robo|robo["name"]==@robot.name}["id"] %>" method="post">
   <h4>Edit</h4>
   <input type="hidden" class="form-control" name="_method" value="PUT"> 
   <div class="form-group row"> 
     <div class="col-md-6">
       <span class="label label-default">Name</span>
-      <input type="text" class="form-control" name="robot[name]" value="<%= @robot["name"]%>">
+      <input type="text" class="form-control" name="robot[name]" value="<%= @robot.name %>">
     </div>
     <div class="col-md-3">
       <span class="label label-default">City</span>
-      <input type="text" class="form-control" name="robot[city]" value="<%= @robot["city"] %>">
+      <input type="text" class="form-control" name="robot[city]" value="<%= @robot.city %>">
     </div>
     <div class="col-md-1">
       <span class="label label-default">State</span>
-      <input type="text" class="form-control" name="robot[state]" value="<%= @robot["state"] %>">
+      <input type="text" class="form-control" name="robot[state]" value="<%= @robot.state %>">
     </div>
     <div class="form-group">
       <div class="col-md-10">
       <span class="label label-default">Birthdate</span>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[birthdate][month]" value="<%= @robot["birthdate"].split("/").first.to_i %>">
+          <input type="text" class="form-control" name="robot[birthdate][month]" value="<%= @robot.birthdate.split("/").first.to_i %>">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[birthdate][day]" value="<%= @robot["birthdate"].split("/")[1].to_i %>">
+          <input type="text" class="form-control" name="robot[birthdate][day]" value="<%= @robot.birthdate.split("/")[1].to_i %>">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[birthdate][year]" value="<%= @robot["birthdate"].split("/").last.to_i %>">
+          <input type="text" class="form-control" name="robot[birthdate][year]" value="<%= @robot.birthdate.split("/").last.to_i %>">
         </div>
       </div>
     </div>
@@ -32,13 +32,13 @@
       <div class="col-md-10">
         <span class="label label-default">Date Hired</span>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[date_hired][month]" value="<%= @robot["date_hired"].split("/").first.to_i %>">
+          <input type="text" class="form-control" name="robot[date_hired][month]" value="<%= @robot.date_hired.split("/").first.to_i %>">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[date_hired][day]" value="<%= @robot["date_hired"].split("/")[1].to_i %>">
+          <input type="text" class="form-control" name="robot[date_hired][day]" value="<%= @robot.date_hired.split("/")[1].to_i %>">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[date_hired][year]" value="<%= @robot["date_hired"].split("/").last.to_i %>">
+          <input type="text" class="form-control" name="robot[date_hired][year]" value="<%= @robot.date_hired.split("/").last.to_i %>">
         </div>
       </div>
     </div>

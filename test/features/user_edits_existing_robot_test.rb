@@ -1,6 +1,10 @@
 require_relative '../test_helper'
 
 class UserEditsExistingRobotTest < FeatureTest
+  def find_current_id
+    robot_world.all.first["id"]
+  end
+
   def test_user_can_edit_all_existing_info
     visit '/robots/new'
 
@@ -18,7 +22,7 @@ class UserEditsExistingRobotTest < FeatureTest
 
     click_link "AWESOME-O"
 
-    assert "/robots/1", current_path
+    assert "/robots/#{find_current_id}", current_path
     
     within(".table") do
       assert page.has_content?("AWESOME-O")
@@ -45,7 +49,7 @@ class UserEditsExistingRobotTest < FeatureTest
     choose "RoboPolice"
     click_button "Edit"
 
-    assert "/robots/1", current_path
+    assert "/robots/#{find_current_id}", current_path
 
     within (".table") do
       assert page.has_content?("Bender")

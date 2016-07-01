@@ -5,17 +5,17 @@ class RobotWorld
   end
 
   def create(robot)
-      robo = new_robot(:name => robot[:name], :city => robot[:city], 
+      robo = {:name => robot[:name], :city => robot[:city], 
                                    :state => robot[:state], :birthdate => format_date(robot[:birthdate]),
                                    :date_hired => format_date(robot[:date_hired]), 
                                    :department => robot[:department],
-                                   :avatar => "https://robohash.org/#{rand(100)}")
+                                   :avatar => "https://robohash.org/#{rand(100)}"}
 
       database.execute("INSERT INTO robots (name, city, state, birthdate,
                                           date_hired, department, avatar)
-                       VALUES (\"#{robo.name}\", \"#{robo.city}\", \"#{robo.state}\",
-                              \"#{robo.birthdate}\", \"#{robo.date_hired}\",
-                              \"#{robo.department}\", \"#{robo.avatar}\");"
+                       VALUES (\"#{robo[:name]}\", \"#{robo[:city]}\", \"#{robo[:state]}\",
+                              \"#{robo[:birthdate]}\", \"#{robo[:date_hired]}\",
+                              \"#{robo[:department]}\", \"#{robo[:avatar]}\");"
                       )
   end
 
@@ -24,7 +24,7 @@ class RobotWorld
   end
 
   def format_date(date)
-    "#{date[:month]}/#{date[:day]}/#{date[:year]}"
+    "#{date[:month]}/#{date[:day]}/#{date[:year]}" unless date.nil?
   end
 
   def all
@@ -32,28 +32,24 @@ class RobotWorld
   end
 
   def find(robot_id)
-    all.find do |robot| 
+    robot = new_robot(all.find do |robot| 
       robot["id"] == robot_id
-    end.delete_if{|k,v| k.is_a?(Fixnum)}
+    end.delete_if{|k,v| k.is_a?(Fixnum)})
   end
 
   def update(robot_id, new_robot_data)
+    new_robot_data.each do |robo_data|
+      database.execute("UPDATE robots SET
+                        \"#{robo_data.first.to_s}\" = ?
+                        WHERE id = ?;", robo_data.last, robot_id)
+    end
   end
 
   def destroy(robot_id)
-    #STILL NEEDS SQLITE3 FUNCTIONALITY
-    database.transaction do
-      database['robots'].delete_if do |robot|
-        robot.id == robot_id
-      end
-    end
+    database.execute("DELETE FROM robots WHERE id=\"#{robot_id}\";")
   end
 
   def delete_all
-    #STILL NEEDS SQLITE3 FUNCTIONALITY
-    database.transaction do
-      database['robots'].clear
-      database['population'] = 0
-    end
+    database.execute("DELETE FROM robots;")
   end
 end

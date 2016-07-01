@@ -1,5 +1,9 @@
 require_relative '../test_helper'
 class UserSeesRobotTest < FeatureTest
+  def find_robot_id
+    robot_world.all.first["id"]
+  end
+
   def test_user_see_robot
     robot_one = robot_world.create(
      :name => "Harold"
@@ -54,7 +58,7 @@ class UserSeesRobotTest < FeatureTest
 
     click_link("Hector")
 
-    assert_equal "/robots/1", current_path
+    assert_equal "/robots/#{find_robot_id}", current_path
 
     within(".table") do
       assert page.has_content?("Hector")
