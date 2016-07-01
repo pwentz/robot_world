@@ -1,59 +1,59 @@
 class RobotWorld
-  attr_reader :world
-  def initialize(world)
-    @world = world
+  attr_reader :database
+  def initialize(database)
+    @database = database
   end
 
   def create(robot)
-    world.transaction do
-      world['robots'] ||= []
-      world['population'] ||= 0
-      world['population'] += 1
-      world['robots'] << new_robot(world['population'], robot[:name], robot[:city], robot[:state],
-                                   robot[:birthdate], robot[:date_hired], robot[:department], "https://robohash.org/#{world['population']}")
-    end
+      robo = new_robot(:name => robot[:name], :city => robot[:city], 
+                                   :state => robot[:state], :birthdate => format_date(robot[:birthdate]),
+                                   :date_hired => format_date(robot[:date_hired]), 
+                                   :department => robot[:department],
+                                   :avatar => "https://robohash.org/#{rand(100)}")
+
+      database.execute("INSERT INTO robots (name, city, state, birthdate,
+                                          date_hired, department, avatar)
+                       VALUES (\"#{robo.name}\", \"#{robo.city}\", \"#{robo.state}\",
+                              \"#{robo.birthdate}\", \"#{robo.date_hired}\",
+                              \"#{robo.department}\", \"#{robo.avatar}\");"
+                      )
   end
 
+  def new_robot(robot_details)
+    Robot.new(robot_details)
+  end
 
-  def new_robot(id, name, city, state, birthday, date_hired, department, avatar)
-    Robot.new(id, name, city, state, birthday, date_hired, department, avatar)
+  def format_date(date)
+    "#{date[:month]}/#{date[:day]}/#{date[:year]}"
   end
 
   def all
-    world.transaction do
-      world['robots'] ||= []
-    end
+    database.execute("SELECT * FROM robots;")
   end
 
   def find(robot_id)
-    all.find{|robot| robot.id == robot_id}
+    all.find do |robot| 
+      robot["id"] == robot_id
+    end.delete_if{|k,v| k.is_a?(Fixnum)}
   end
 
-  Robot = Struct.new(:id, :name, :city, :state,
-                     :birthdate,
-                     :date_hired, :department, :avatar)
-
   def update(robot_id, new_robot_data)
-    world.transaction do
-      target = world['robots'].find{|robot| robot.id == robot_id}
-      target.to_h.merge(new_robot_data).each do |key, updated_value|
-        target[key] = updated_value
-      end
-    end
   end
 
   def destroy(robot_id)
-    world.transaction do
-      world['robots'].delete_if do |robot|
+    #STILL NEEDS SQLITE3 FUNCTIONALITY
+    database.transaction do
+      database['robots'].delete_if do |robot|
         robot.id == robot_id
       end
     end
   end
 
   def delete_all
-    world.transaction do
-      world['robots'].clear
-      world['population'] = 0
+    #STILL NEEDS SQLITE3 FUNCTIONALITY
+    database.transaction do
+      database['robots'].clear
+      database['population'] = 0
     end
   end
 end

@@ -5,6 +5,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'capybara/dsl'
 require 'launchy'
+require 'sqlite3'
 
 module TestHelpers
   def teardown
