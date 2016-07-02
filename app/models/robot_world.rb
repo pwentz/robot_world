@@ -25,7 +25,7 @@ class RobotWorld
 
   def format_date(date)
     unless date.nil?
-      "#{date["month"].rjust(2,"0")}/#{date["day"].rjust(2,"0")}/#{date["year"]}"
+      "#{date["month"].to_s.rjust(2,"0")}/#{date["day"].to_s.rjust(2,"0")}/#{date["year"]}"
     end
   end
 
