@@ -6,7 +6,7 @@ class UserSeesRobotTest < FeatureTest
 
   def test_user_see_robot
     robot_one = robot_world.create(
-     :name => "Harold"
+     "name" => "Harold"
     )
 
     #as a user,

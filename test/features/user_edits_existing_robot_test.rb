@@ -6,6 +6,7 @@ class UserEditsExistingRobotTest < FeatureTest
   end
 
   def test_user_can_edit_all_existing_info
+    
     visit '/robots/new'
 
     fill_in "robot[name]", with: "AWESOME-O"

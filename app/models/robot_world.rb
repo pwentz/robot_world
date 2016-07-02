@@ -5,18 +5,18 @@ class RobotWorld
   end
 
   def create(robot)
-      robo = {:name => robot[:name], :city => robot[:city], 
-                                   :state => robot[:state], :birthdate => format_date(robot[:birthdate]),
-                                   :date_hired => format_date(robot[:date_hired]), 
-                                   :department => robot[:department],
-                                   :avatar => "https://robohash.org/#{rand(100)}"}
+    robo = {:name => robot["name"], :city => robot["city"], 
+                                 :state => robot["state"], :birthdate => format_date(robot["birthdate"]),
+                                 :date_hired => format_date(robot["date_hired"]), 
+                                 :department => robot["department"],
+                                 :avatar => "https://robohash.org/#{rand(100)}"}
 
-      database.execute("INSERT INTO robots (name, city, state, birthdate,
-                                          date_hired, department, avatar)
-                       VALUES (\"#{robo[:name]}\", \"#{robo[:city]}\", \"#{robo[:state]}\",
-                              \"#{robo[:birthdate]}\", \"#{robo[:date_hired]}\",
-                              \"#{robo[:department]}\", \"#{robo[:avatar]}\");"
-                      )
+    database.execute("INSERT INTO robots (name, city, state, birthdate,
+                                        date_hired, department, avatar)
+                     VALUES (\"#{robo[:name]}\", \"#{robo[:city]}\", \"#{robo[:state]}\",
+                            \"#{robo[:birthdate]}\", \"#{robo[:date_hired]}\",
+                            \"#{robo[:department]}\", \"#{robo[:avatar]}\");"
+                    )
   end
 
   def new_robot(robot_details)
@@ -24,7 +24,9 @@ class RobotWorld
   end
 
   def format_date(date)
-    "#{date[:month]}/#{date[:day]}/#{date[:year]}" unless date.nil?
+    unless date.nil?
+      "#{date["month"].rjust(2,"0")}/#{date["day"].rjust(2,"0")}/#{date["year"]}"
+    end
   end
 
   def all
@@ -38,11 +40,27 @@ class RobotWorld
   end
 
   def update(robot_id, new_robot_data)
-    new_robot_data.each do |robo_data|
-      database.execute("UPDATE robots SET
-                        \"#{robo_data.first.to_s}\" = ?
-                        WHERE id = ?;", robo_data.last, robot_id)
-    end
+    database.execute("UPDATE robots 
+                     SET name=? 
+                     WHERE id=?;", [new_robot_data["name"], robot_id]) unless new_robot_data["name"].nil?
+    database.execute("UPDATE robots 
+                     SET city=? 
+                     WHERE id=?;", [new_robot_data["city"], robot_id]) unless new_robot_data["city"].nil?
+    database.execute("UPDATE robots 
+                     SET state=? 
+                     WHERE id=?;", [new_robot_data["state"], robot_id]) unless new_robot_data["state"].nil?
+    database.execute("UPDATE robots 
+                     SET birthdate=? 
+                     WHERE id=?;", [format_date(new_robot_data["birthdate"]), robot_id]) unless new_robot_data["birthdate"].nil?
+    database.execute("UPDATE robots 
+                     SET date_hired=? 
+                     WHERE id=?;", [format_date(new_robot_data["date_hired"]), robot_id]) unless new_robot_data["date_hired"].nil?
+    database.execute("UPDATE robots 
+                     SET department=? 
+                     WHERE id=?;", [new_robot_data["department"], robot_id]) unless new_robot_data["department"].nil?
+    database.execute("UPDATE robots 
+                     SET avatar=? 
+                     WHERE id=?;", [new_robot_data["avatar"], robot_id]) unless new_robot_data["avatar"].nil?
   end
 
   def destroy(robot_id)
