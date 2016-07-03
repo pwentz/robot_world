@@ -1,25 +1,10 @@
 require_relative '../test_helper'
-class UserSeesRobotTest < FeatureTest
+class UserCreatesRobotTest < FeatureTest
   def find_robot_id
     robot_world.all.first["id"]
   end
 
-  def test_user_see_robot
-    robot_one = robot_world.create(
-     "name" => "Harold"
-    )
-
-    #as a user,
-    #when I visit the robot index,
-    # then I should see all of my robots
-    visit '/robots'
-
-    within(".media h4") do
-      assert page.has_content?("Harold")
-    end
-  end
-
-  def test_user_creates_robot_and_visits_robot_page
+  def test_user_creates_robot
     visit '/'
     click_link("Create new robot")
     
@@ -32,14 +17,10 @@ class UserSeesRobotTest < FeatureTest
     fill_in "robot[birthdate][year]", with: "3040"
     click_button("Create!")
 
-    click_link("Hector")
+    assert_equal "/robots", current_path
 
-    assert_equal "/robots/#{find_robot_id}", current_path
-
-    within(".table") do
+    within(".media h4") do
       assert page.has_content?("Hector")
-      assert page.has_content?("Robotica")
-      assert page.has_content?("05/22/3040")
     end
 
     within(".thumbnail") do

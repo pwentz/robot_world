@@ -15,8 +15,8 @@ class Robot
 
   def attributes
     instance_variables.reduce({}) do |result, attribute|
-      result.merge!(attribute[1..-1].to_sym => 
+      result.merge!(attribute[1..-1] => 
                     instance_variable_get(attribute))
-    end
+    end.delete_if{|k,v| v.nil?}
   end
 end
