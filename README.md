@@ -1,5 +1,4 @@
-# robot_world
-Robot Worldy
+# Robot World
 
 Robot World is a simple sinatra application highlighting the basic CRUD (Create, Read, Update, Destroy) functionality using
 SQLite3. Users can create a new robot with their own personal attributes (name, birthdate, date hired, unique avatar, and more)
