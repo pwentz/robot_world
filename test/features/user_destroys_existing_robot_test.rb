@@ -12,27 +12,27 @@ class UserDestroysExistingRobotTest < FeatureTest
     choose "Librarian"
     click_button "Create!"
 
-    within(".media-list") do
-      assert page.has_css?(".media h4")
-      assert page.has_css?(".media .thumbnail")
+    within(".card") do
+      assert page.has_css?(".card-block h5")
+      assert page.has_css?("img")
     end
     
-    within(".media h4") do
+    within(".card-block h5") do
       assert page.has_content?("Bender")
     end
 
-    within(".media .thumbnail") do
+    within(".card") do
       assert page.has_css?("img")
     end
 
     click_button "Delete"
 
-    within(".media-list") do
+    within("#robots") do
       refute page.has_content?("Bender")
-      refute page.has_css?(".media h4")
+      refute page.has_css?(".card")
 
       refute page.has_css?("img")
-      refute page.has_css?(".media .thumbnail")
+      refute page.has_css?("a img")
     end
 
   end

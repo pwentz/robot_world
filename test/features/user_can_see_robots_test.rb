@@ -14,7 +14,7 @@ class UserSeesRobotTest < FeatureTest
     # then I should see all of my robots
     visit '/robots'
 
-    within(".media h4") do
+    within(".card-block h5") do
       assert page.has_content?("Harold")
     end
   end

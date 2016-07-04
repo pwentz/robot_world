@@ -22,11 +22,11 @@ class UserCreatesRobotTest < FeatureTest
 
     assert_equal "/robots", current_path
 
-    within(".media h4") do
+    within(".card-block h5") do
       assert page.has_content?("Hector")
     end
 
-    within(".thumbnail") do
+    within(".card") do
       assert page.has_css?("img")
     end
   end
