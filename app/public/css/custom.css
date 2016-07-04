@@ -7,3 +7,29 @@ div.btn-override {
 .col-md-2.thumbnail.media-object{
   border-radius: 25px;
 }
+#background{
+  width: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  opacity: 0.65;
+  z-index: -1;
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+}
+#background-image{
+  background:url('http://static2.comicvine.com/uploads/original/11122/111224689/4884846-steampunk+city.jpg') no-repeat center center;
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body{
+  min-height 100%;
+}

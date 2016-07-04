@@ -75,7 +75,7 @@ module StatBot
 
   def robots_by_city
     all.reduce({}) do |result, robo_data|
-      result.merge!(robo_data["city"] => 1) do |dpt, old_robots, new_robots|
+      result.merge!(robo_data["city"] => 1) do |city, old_robots, new_robots|
         old_robots + new_robots
       end
     end
@@ -83,7 +83,7 @@ module StatBot
 
   def robots_by_state
     all.reduce({}) do |result, robo_data|
-      result.merge!(robo_data["state"] => 1) do |dpt, old_robots, new_robots|
+      result.merge!(robo_data["state"] => 1) do |state, old_robots, new_robots|
         old_robots + new_robots
       end
     end

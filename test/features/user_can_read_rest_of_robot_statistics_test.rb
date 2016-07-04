@@ -4,6 +4,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     visit "/robots/new"
 
     #RoboPolice - 5
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Electropolis"
     fill_in "robot[state]", with: "RW"
     fill_in "robot[birthdate][month]", with: "01"
@@ -15,6 +16,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "RoboPolice"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Electropolis"
     fill_in "robot[state]", with: "RW"
     fill_in "robot[birthdate][month]", with: "01"
@@ -26,6 +28,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "RoboPolice"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robotica"
     fill_in "robot[state]", with: "EL"
     fill_in "robot[birthdate][month]", with: "01"
@@ -37,6 +40,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "RoboPolice"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robotica"
     fill_in "robot[state]", with: "EL"
     fill_in "robot[birthdate][month]", with: "01"
@@ -48,6 +52,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "RoboPolice"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robotica"
     fill_in "robot[state]", with: "EL"
     fill_in "robot[birthdate][month]", with: "01"
@@ -60,6 +65,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     click_button "Create!"
     click_link "Create new robot"
     #Librarian - 3
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Electropolis"
     fill_in "robot[state]", with: "RW"
     fill_in "robot[birthdate][month]", with: "01"
@@ -71,6 +77,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Librarian"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robo City"
     fill_in "robot[state]", with: "CS"
     fill_in "robot[birthdate][month]", with: "01"
@@ -82,6 +89,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Librarian"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Electropolis"
     fill_in "robot[state]", with: "RW"
     fill_in "robot[birthdate][month]", with: "01"
@@ -93,6 +101,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Librarian"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     #Trash Compactor - 7
     fill_in "robot[city]", with: "Robo City"
     fill_in "robot[state]", with: "CS"
@@ -105,6 +114,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Trash Compactor"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robo City"
     fill_in "robot[state]", with: "CS"
     fill_in "robot[birthdate][month]", with: "01"
@@ -116,6 +126,20 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Trash Compactor"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
+    fill_in "robot[city]", with: "Robo City"
+    fill_in "robot[state]", with: "CS"
+    fill_in "robot[birthdate][month]", with: "01"
+    fill_in "robot[birthdate][day]", with: "01"
+    fill_in "robot[birthdate][year]", with: "2008"
+    fill_in "robot[date_hired][month]", with: "01"
+    fill_in "robot[date_hired][day]", with: "01"
+    fill_in "robot[date_hired][year]", with: "2011"
+    choose "Trash Compactor"
+    fill_in "robot[name]", with: Faker::Name.name
+    click_button "Create!"
+    click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robo City"
     fill_in "robot[state]", with: "CS"
     fill_in "robot[birthdate][month]", with: "01"
@@ -127,17 +151,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Trash Compactor"
     click_button "Create!"
     click_link "Create new robot"
-    fill_in "robot[city]", with: "Robo City"
-    fill_in "robot[state]", with: "CS"
-    fill_in "robot[birthdate][month]", with: "01"
-    fill_in "robot[birthdate][day]", with: "01"
-    fill_in "robot[birthdate][year]", with: "2008"
-    fill_in "robot[date_hired][month]", with: "01"
-    fill_in "robot[date_hired][day]", with: "01"
-    fill_in "robot[date_hired][year]", with: "2011"
-    choose "Trash Compactor"
-    click_button "Create!"
-    click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Electropolis"
     fill_in "robot[state]", with: "RW"
     fill_in "robot[birthdate][month]", with: "01"
@@ -149,6 +163,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Trash Compactor"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Electropolis"
     fill_in "robot[state]", with: "RW"
     fill_in "robot[birthdate][month]", with: "01"
@@ -160,6 +175,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     choose "Trash Compactor"
     click_button "Create!"
     click_link "Create new robot"
+    fill_in "robot[name]", with: Faker::Name.name
     fill_in "robot[city]", with: "Robo City"
     fill_in "robot[state]", with: "CS"
     fill_in "robot[birthdate][month]", with: "01"
@@ -170,6 +186,7 @@ class UserCanReadRobotStatsDptTest < FeatureTest
     fill_in "robot[date_hired][year]", with: "2011"
     choose "Trash Compactor"
     click_button "Create!"
+    save_and_open_page
     click_link "Back to dashboard"
 
     within(".table") do 

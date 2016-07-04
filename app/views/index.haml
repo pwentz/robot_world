@@ -1,0 +1,21 @@
+%h3{:class => "text-center"} Welcome to Robot World!
+.row{:id => "robots"}
+  - @robots.each do |robot|
+    %div{:class => ["col-md-3", "col-offset-md01"]}
+      .thumbnail{:href => "/robots/#{robot["id"]}"}
+        %img{:src => robot["avatar"], :alt => "Card image cap"}
+        %div{:class => ["card-block", "text-center"]}
+          %a{:href => "/robots/#{robot["id"]}"}
+            %h5{:class => ["card-title", "text-center"]}= robot["name"]
+            %p
+              %a{:class => ["btn", "btn-xs", "btn-success"], :href => "/robots/#{robot["id"]}", :role => "button"} Edit
+            %p
+              %form{:action => "/robots/#{robot["id"]}", :method => "POST"}
+                %input{:type => "hidden", :class => "form-control", :name => "_method", :value => "DELETE"}
+                %input{:class => ["btn", "btn-xs", "btn-danger"], :type => "submit", :value => "Delete"}
+    %p
+      .row
+        %a{:class => ["btn", "btn-success", "btn-xs"], :href => "/robots/new", :role => "button"} Create new robot
+    %p
+      .row
+        %a{:class => ["btn", "btn-xs", "btn-info"], :href => "/", :role => "button"} Back to dashboard

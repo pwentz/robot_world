@@ -6,6 +6,7 @@ require 'minitest/pride'
 require 'capybara/dsl'
 require 'launchy'
 require 'sqlite3'
+require 'faker'
 
 module TestHelpers
   def teardown

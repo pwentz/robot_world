@@ -47,27 +47,18 @@ class RobotWorld
 
   def update(robot_id, new_robot_data)
     database.execute("UPDATE robots 
-                     SET name=? 
-                     WHERE id=?;", [new_robot_data["name"], robot_id]) unless new_robot_data["name"].nil?
-    database.execute("UPDATE robots 
-                     SET city=? 
-                     WHERE id=?;", [new_robot_data["city"], robot_id]) unless new_robot_data["city"].nil?
-    database.execute("UPDATE robots 
-                     SET state=? 
-                     WHERE id=?;", [new_robot_data["state"], robot_id]) unless new_robot_data["state"].nil?
-    database.execute("UPDATE robots 
-                     SET birthdate=? 
-                     WHERE id=?;", [format_date(new_robot_data["birthdate"]), robot_id]) unless new_robot_data["birthdate"].nil?
-    database.execute("UPDATE robots 
-                     SET date_hired=? 
-                     WHERE id=?;", [format_date(new_robot_data["date_hired"]), robot_id]) unless new_robot_data["date_hired"].nil?
-    database.execute("UPDATE robots 
-                     SET department=? 
-                     WHERE id=?;", [new_robot_data["department"], robot_id]) unless new_robot_data["department"].nil?
-    database.execute("UPDATE robots 
-                     SET avatar=? 
-                     WHERE id=?;", [new_robot_data["avatar"], robot_id])
+                     SET name=?,
+                     city=?, state=?,
+                     birthdate=?,
+                     date_hired=?,
+                     department=?,
+                     avatar=? WHERE
+                     id=?;", new_robot_data["name"], new_robot_data["city"],
+                     new_robot_data["state"], new_robot_data["birthdate"], 
+                     new_robot_data["department"], new_robot_data["avatar"],
+                     robot_id)
   end
+
 
   def destroy(robot_id)
     database.execute("DELETE FROM robots WHERE id=\"#{robot_id}\";")
