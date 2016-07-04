@@ -4,7 +4,7 @@
     <% @robots.each do |robot| %>
       <li class="media">
         <div class="col-md-2">
-          <a href="/robots/<%= robot["id"] %>" class="thumbnail">
+          <a href="/robots/<%= robot["id"] %>" class="thumbnail" id="robot_link">
             <img class="media-object" src="<%= robot["avatar"] %>"> 
           </a>
         </div>

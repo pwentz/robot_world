@@ -3,6 +3,7 @@ class RobotWorldApp < Sinatra::Base
   set :method_override, true
 
   get '/' do
+    robot_world.calculate_statistics
     erb :dashboard
   end
 

@@ -1,7 +1,13 @@
+require_relative 'statbot'
 class RobotWorld
-  attr_reader :database
+  include StatBot
+  attr_reader :database, :robot_ages, 
+              :max_hires, :hires_by_year,
+              :by_department, :by_city, :by_state
   def initialize(database)
     @database = database
+    @robot_ages = {"years" => [], "months" => [], "days" => []}
+    @hires_by_year = {}
   end
 
   def create(robot)
@@ -25,7 +31,7 @@ class RobotWorld
 
   def format_date(date)
     unless date.nil?
-      "#{date["month"].to_s.rjust(2,"0")}/#{date["day"].to_s.rjust(2,"0")}/#{date["year"]}"
+      "#{date["month"].to_s.rjust(2,"0")}/#{date["day"].to_s.rjust(2,"0")}/#{date["year"].to_s.rjust(4,"0")}"
     end
   end
 
@@ -60,7 +66,7 @@ class RobotWorld
                      WHERE id=?;", [new_robot_data["department"], robot_id]) unless new_robot_data["department"].nil?
     database.execute("UPDATE robots 
                      SET avatar=? 
-                     WHERE id=?;", [new_robot_data["avatar"], robot_id]) unless new_robot_data["avatar"].nil?
+                     WHERE id=?;", [new_robot_data["avatar"], robot_id])
   end
 
   def destroy(robot_id)
@@ -71,3 +77,4 @@ class RobotWorld
     database.execute("DELETE FROM robots;")
   end
 end
+

@@ -15,6 +15,9 @@ class UserCreatesRobotTest < FeatureTest
     fill_in "robot[birthdate][month]", with: "05"
     fill_in "robot[birthdate][day]", with: "22"
     fill_in "robot[birthdate][year]", with: "3040"
+    fill_in "robot[date_hired][month]", with: "01"
+    fill_in "robot[date_hired][day]", with: "01"
+    fill_in "robot[date_hired][year]", with: "2011"
     click_button("Create!")
 
     assert_equal "/robots", current_path
