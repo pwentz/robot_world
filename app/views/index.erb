@@ -1,28 +1,18 @@
 <h3 class="text-center">Welcome to Robot World!</h3>
-<div class="row">
-  <ul class="media-list">
-    <% @robots.each do |robot| %>
-      <li class="media">
-        <div class="col-md-2">
-          <a href="#" class="thumbnail">
-            <img class="media-object" src="<%= robot.avatar %>"> 
-          </a>
-        </div>
-        <div class="col-md-8">
-          <a href="/robots/<%= robot.id %>">
-            <div class="media-body">
-              <h4 class="media-heading"><%= robot.name %></h4>
-            </div>
-          </a>
-          <a class="btn btn-success btn-xs" href="/robots/<%= robot.id %>/edit" role="button">Edit</a>
-          <form action="/robots/<%= robot.id %>" method="POST">
-            <input type="hidden" class="form-control" name="_method" value="DELETE">
-            <input class="btn btn-xs btn-danger" type="submit" value="Delete">
-          </form>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+<div class="row" id="robots">
+  <% @robots.each do |robot|%>
+    <div class="card col-md-3 col-offset-md-1">
+      <a class="thumbnail" href="/robots/<%= robot["id"] %>"><img src="<%= robot["avatar"] %>" alt="Card image cap"></a>
+      <div class="card-block text-center">
+        <a href="/robots/<%= robot["id"] %>"><h5 class="card-title text-center"><%= robot["name"] %></h5></a>
+        <p><a class="btn btn-xs btn-success" href="/robots/<%= robot["id"] %>/edit" role="button">Edit</a></p>
+        <p><form action="/robots/<%= robot["id"] %>" method="POST">
+          <input type="hidden" class="form-control" name="_method" value="DELETE">
+          <input class="btn btn-xs btn-danger" type="submit" value="Delete">
+        </form></p>
+      </div>
+    </div>
+  <% end %>
 </div>
 <p><div class="row">
   <a class="btn btn-success btn-xs" href="/robots/new" role="button">Create new robot</a>

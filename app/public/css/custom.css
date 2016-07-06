@@ -1,0 +1,9 @@
+.media-list.col-md-8-override {
+  background-color: red;
+}
+div.btn-override {
+  border-radius: 25px;
+}
+.col-md-2.thumbnail.media-object{
+  border-radius: 25px;
+}

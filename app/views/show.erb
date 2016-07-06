@@ -7,7 +7,7 @@
     </a>
   </div>
   <div class="col-md-8">
-    <table class="table">
+    <table id="robot_attributes" class="table">
       <tr>
         <th>Name</th>
         <th>City</th>
@@ -20,8 +20,8 @@
         <td><%= @robot.name %></td>
         <td><%= @robot.city %></td>
         <td><%= @robot.state %></td>
-        <td><%= @robot.birthdate["month"] %>/<%= @robot.birthdate["day"] %>/<%= @robot.birthdate["year"]%></td>
-        <td><%= @robot.date_hired["month"] %>/<%= @robot.date_hired["day"] %>/<%= @robot.date_hired["year"] %></td>
+        <td><%= @robot.birthdate %></td>
+        <td><%= @robot.date_hired %></td>
         <td><%= @robot.department %></td>
       </tr>
     </table>

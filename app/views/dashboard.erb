@@ -1,9 +1,66 @@
-<h4 class="text-center">Welcome to Robot World!</h4>
+<h4 id="work" class="text-center">Welcome to Robot World!</h4>
 
-<p><div class="row">
+<p><div id="fuego" class="row">
   <a class="col-md-2 col-md-offset-5 btn btn-success" href="/robots" role="button">Robots</a>
 </div></p>
 
 <p><div class="row">
   <a class="col-md-2 col-md-offset-5 btn btn-default" href="/robots/new" role="button">Create new robot</a>
 </div></p>
+
+<table class="table table-default">
+  <% unless robot_world.robot_ages.values.flatten.empty? %>
+    <tr>
+      <th>Average robot age</th>
+      <th>Population by department</th>
+      <th>Population by city</th>
+      <th>Population by state</th>
+    </tr>
+    <tr>
+      <td><%= robot_world.robot_ages["years"] %> years, <%= robot_world.robot_ages["months"] %> months, and <%= robot_world.robot_ages["days"] %> days old</td>
+      <td><%= robot_world.by_department.first.first %>: <%= robot_world.by_department.shift.last %></td>
+      <td><%= robot_world.by_city.first.first %>: <%= robot_world.by_city.shift.last %></td>
+      <td><%= robot_world.by_state.first.first %>: <%= robot_world.by_state.shift.last %></td>
+    </tr>
+    <% robot_world.robot_ages.each do %>
+      <tr>
+        <td></td>
+        <% unless robot_world.by_department.empty? %>
+          <td><%= robot_world.by_department.first.first %>: <%= robot_world.by_department.shift.last %></td>
+        <% else %>
+          <td> </td>
+        <% end %>
+        <% unless robot_world.by_city.empty? %>
+          <td><%= robot_world.by_city.first.first %>: <%= robot_world.by_city.shift.last %></td>
+        <% else %>
+          <td> </td>
+        <% end %>
+        <% unless robot_world.by_state.empty?%>
+          <td><%= robot_world.by_state.first.first %>: <%= robot_world.by_state.shift.last %></td>
+        <% else %>
+          <td> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<div id="hires_by_year">
+  <p>Robots hired by year:</p>
+  <% robot_world.hires_by_year.each do |year, robots_hired|%>
+    <% unless robot_world.max_hires.nil? %>
+      <% if (robots_hired.to_f/robot_world.max_hires) > 0.5 %>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= robots_hired %>" aria-valuemin="0" aria-valuemax="<%= robot_world.max_hires %>" style="width:<%= (robots_hired.to_f/ robot_world.max_hires) * 100%>%">
+            <%= year %>: <%= robots_hired %> hires
+          </div>
+        </div>
+      <% else %>
+        <div class="progress">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= robots_hired %>" aria-valuemin="0" aria-valuemax="<%= robot_world.max_hires %>" style="width:<%= (robots_hired.to_f/ robot_world.max_hires * 100)%>%">
+            <%= year %>: <%= robots_hired %> hires
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

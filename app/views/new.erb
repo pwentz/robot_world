@@ -16,13 +16,13 @@
       <div class="col-md-10">
       <span class="label label-default">Birthdate</span>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[birthdate][month]">
+          <input type="text" class="form-control" name="robot[birthdate][month]" maxlength="2" require="true">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[birthdate][day]">
+          <input type="text" class="form-control" name="robot[birthdate][day]" maxlength="2" require="true">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[birthdate][year]">
+          <input type="text" class="form-control" name="robot[birthdate][year]" minlength="4" maxlength="4" require="true">
         </div>
       </div>
     </div>
@@ -30,13 +30,13 @@
       <div class="col-md-10">
         <span class="label label-default">Date Hired</span>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[date_hired][month]">
+          <input type="text" class="form-control" name="robot[date_hired][month]" maxlength="2" required="true">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[date_hired][day]">
+          <input type="text" class="form-control" name="robot[date_hired][day]" maxlength="2" required="true">
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" name="robot[date_hired][year]">
+          <input type="text" class="form-control" name="robot[date_hired][year]" minlength="4" maxlength="4" required="true">
         </div>
       </div>
     </div>
@@ -44,20 +44,20 @@
       <div class="col-md-10">
         <div class="radio">
           <label>
-            <input type="radio" name="robot[department]" value="option1">
-            Department 1
+            <input type="radio" name="robot[department]" value="RoboPolice">
+            RoboPolice
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="robot[department]" value="option2">
-            Department 2
+            <input type="radio" name="robot[department]" value="Librarian">
+            Librarian
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="robot[department]" value="option2">
-            Department 3
+            <input type="radio" name="robot[department]" value="Trash Compactor">
+            Trash Compactor
           </label>
         </div>
       </div>
